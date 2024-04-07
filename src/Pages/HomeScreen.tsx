@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../CSS/HomeScreen.css";
 
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
@@ -37,8 +38,8 @@ function TestBlurb({header, textBody, linkText, link}: {header: string; textBody
      * @param link {string} - The link that brings the user to the test
      */
     return (
-        <div>
-            <h3>{header}</h3>
+        <div className="Text-blurb">
+            <h2>{header}</h2>
             <p>{textBody}</p>
             <Link to={link}>{linkText}</Link>
         </div>
@@ -59,9 +60,9 @@ export default function HomeScreen() {
     setKey(event.target.value);
   }
   return (
-    <div className="App">
-      <Header></Header>
-      <div className="App-body">
+    <div>
+      <Header/>
+      <div className="Home-body">
         <TestBlurb
             header={"Basic Test"}
             textBody={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
@@ -71,6 +72,7 @@ export default function HomeScreen() {
             linkText={"Take the Basic Test"}
             link={"/basic-test"}
         />
+        <p style={{paddingBottom: "1px"}}/> <p/>{/*adds some space for aesthetics*/}
         <TestBlurb
             header={"Detailed Test"}
             textBody={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
