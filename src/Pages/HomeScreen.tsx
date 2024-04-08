@@ -68,20 +68,26 @@ export default function HomeScreen() {
       <div className="Home-body">
         <TestBlurb
             header={"Basic Test"}
-            textBody={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
-                "labore et dolore magna aliqua. Aliquet lectus proin nibh nisl condimentum id. Vestibulum morbi " +
-                "blandit cursus risus at ultrices. Vel quam elementum pulvinar etiam non quam. Ut sem nulla pharetra " +
-                "diam sit amet nisl suscipit. Nisi lacus sed viverra tellus in hac habitasse."}
+            textBody={
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore " +
+                "et dolore magna aliqua. Aliquet lectus proin nibh nisl condimentum id. Vestibulum morbi blandit " +
+                "cursus risus at ultrices. Vel quam elementum pulvinar etiam non quam. Ut sem nulla pharetra diam " +
+                "sit amet nisl suscipit. Nisi lacus sed viverra tellus in hac habitasse."
+            }
             linkText={"Take the Basic Test"}
             link={"/basic-test"}
         />
 
         <TestBlurb
             header={"Detailed Test"}
-            textBody={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
-                "labore et dolore magna aliqua. Aliquet lectus proin nibh nisl condimentum id. Vestibulum morbi " +
-                "blandit cursus risus at ultrices. Vel quam elementum pulvinar etiam non quam. Ut sem nulla pharetra " +
-                "diam sit amet nisl suscipit. Nisi lacus sed viverra tellus in hac habitasse."}
+            textBody={
+                "Looking to dive deep into your career options? Our detailed career test offers an in-depth analysis " +
+                "goes beyond the surface by using AI analysis, providing you with comprehensive insights tailored to " +
+                "your unique strengths, interests, and aspirations. Discover potential career paths you may not have " +
+                "considered and gain valuable clarity on your professional journey. Whether you're exploring new " +
+                "opportunities or seeking guidance on your current path, our detailed career test is your roadmap to " +
+                "success."
+            }
             linkText={"Take the Detailed Test"}
             link={"/detailed-test"}
         />
