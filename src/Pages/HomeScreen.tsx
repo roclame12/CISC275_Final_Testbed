@@ -14,13 +14,16 @@ if (prevKey !== null) {
 
 
 function Header() {
-  return (
+    /**
+     * JSX element that renders a header that appears at the top of all pages.
+     */
+    return (
     <header className="container">
       <div className="header">
-        <a href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <Link to="/">Home</Link>
+        <Link to="/">News</Link>
+        <Link to="/">Contact</Link>
+        <Link to="/">About</Link>
       </div>
     </header>
   );
@@ -52,7 +55,7 @@ export default function HomeScreen() {
   //sets the local storage item to the api key the user inputted
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
-    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
+    window.location.reload();//when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
   }
 
   //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
@@ -72,7 +75,7 @@ export default function HomeScreen() {
             linkText={"Take the Basic Test"}
             link={"/basic-test"}
         />
-        <p style={{paddingBottom: "1px"}}/> <p/>{/*adds some space for aesthetics*/}
+
         <TestBlurb
             header={"Detailed Test"}
             textBody={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +

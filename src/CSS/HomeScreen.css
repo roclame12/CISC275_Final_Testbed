@@ -1,5 +1,7 @@
 .Text-blurb {
-    text-align: start
+  padding-top: 6vh;
+  max-width: 75vw;
+  text-align: start
 }
 
 .Home-body {
@@ -7,8 +9,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
