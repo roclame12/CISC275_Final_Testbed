@@ -1,0 +1,13 @@
+.test-body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #282C34FF;
+    color: white;
+}
+
+.question-container {
+    min-height: 20vh;
+}

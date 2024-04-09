@@ -1,7 +1,8 @@
 import React from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import "../CSS/Progress.css";
 
-export function Quiz_progress_bar({responseArray, num_questions}: {
+export function QuizProgressBar({responseArray, num_questions}: {
     responseArray: Array<string>,
     num_questions: number
 }): JSX.Element {
@@ -15,9 +16,12 @@ export function Quiz_progress_bar({responseArray, num_questions}: {
     const progressPercent = Math.floor(responseArray.length / num_questions * 100);
 
     return (
-        <div>
+        <div className="progress-bar-container">
             <h3>Quiz Progress</h3>
-            <ProgressBar now={progressPercent} label={`${progressPercent}%`}/>
+            <ProgressBar
+                now={progressPercent}
+                label={`${progressPercent}%`}
+                variant="success"/>
         </div>
     );
 }
