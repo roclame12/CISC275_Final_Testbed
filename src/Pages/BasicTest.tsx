@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { QuizProgressBar } from "../Components/progress";
+import { Button } from 'react-bootstrap';
 import "../CSS/Tests.css";
 
 
@@ -12,6 +13,8 @@ export default function BasicTestScreen() {
         <div className="test-body">
             <h1>This is a placeholder for the basic test.</h1>
             <QuizProgressBar responseArray={responses} num_questions={NUM_QUESTIONS}/>
+            {/*gh-pages won't build with unused constants. Delete the button when questions are added*/}
+            <Button onClick={() => {setResponses([...responses, ""])}}>Simulate response</Button>
         </div>
     )
 }
