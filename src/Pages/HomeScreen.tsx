@@ -69,10 +69,12 @@ export default function HomeScreen() {
         <TestBlurb
             header={"Basic Test"}
             textBody={
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore " +
-                "et dolore magna aliqua. Aliquet lectus proin nibh nisl condimentum id. Vestibulum morbi blandit " +
-                "cursus risus at ultrices. Vel quam elementum pulvinar etiam non quam. Ut sem nulla pharetra diam " +
-                "sit amet nisl suscipit. Nisi lacus sed viverra tellus in hac habitasse."
+                "Concerned about the path of your career? Gaining insight into your career option " +
+                "is quick and simple with our basic career test. It provides individualized recommendations " +
+                "based on your interests and strengths by utilizing AI analysis. Easily learn about potential " +
+                "job choices and gain a better understanding of your future in the workforce. Our basic career " +
+                "exam is your first step to success and is ideal for anyone looking to explore new prospects or " +
+                "needs a little prodding in the right direction."
             }
             linkText={"Take the Basic Test"}
             link={"/basic-test"}
