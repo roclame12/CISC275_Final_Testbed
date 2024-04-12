@@ -11,3 +11,7 @@
 .question-container {
     min-height: 20vh;
 }
+
+.choice-button.selected {
+    background-color: #0b39dd;
+  }
