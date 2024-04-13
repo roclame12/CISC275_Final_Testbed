@@ -27,7 +27,7 @@ const Question: React.FC<QuestionProps> = ({
 }) => {
     return (
         <div className="question-container">
-            <p className="question-text">{questionText}</p>
+            <h3 className="question-text">{questionText}</h3>
             {type === 'multiple-choice' && choices && onChoiceSelected ? (
                 <div className="choices-container">
                     {choices.map((choice, index) => (
@@ -43,16 +43,18 @@ const Question: React.FC<QuestionProps> = ({
             ) : null}
             {type === 'open-ended' && onTextChange ? (
                 <textarea
-                    className="text-response"
+                    className="question-text-response"
                     value={textResponse || ''}
                     onChange={(e) => onTextChange(e.target.value)}
                     placeholder="Your answer here..."
                 />
             ) : null}
-            {currentQuestionIndex > 0 && (
-                <Button variant="secondary" onClick={() => onQuestionChange?.(false)}>Previous</Button>
-            )}
-            <Button variant="primary" onClick={() => onQuestionChange?.(true)}>Next</Button>
+            <div className='nav-buttons-container'>
+                {currentQuestionIndex > 0 && (
+                    <Button variant="secondary" className="nav-button" onClick={() => onQuestionChange?.(false)}>Previous</Button>
+                )}
+                <Button variant="primary" className="nav-button" onClick={() => onQuestionChange?.(true)}>Next</Button>
+            </div>
         </div>
     );
 };

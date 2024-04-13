@@ -9,11 +9,32 @@
 }
 
 .question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 50vh;
     min-width: 87vw;
     padding: 10px;
     border-radius: 10px;
     background: #545459;
+}
+
+.question-text-response {
+    min-height: 30vh;
+    min-width: 60vw;
+    font-size: calc(10px + 2vmin);
+    background: #333333;
+    color: white;
+}
+
+.nav-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav-button {
+    min-width: 30vw;
 }
 
 .choice-button.selected {
