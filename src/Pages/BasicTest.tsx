@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { QuizProgressBar } from "../Components/progress";
-import { Button } from 'react-bootstrap';
+import { NavB } from "../Components/navBar";
 import "../CSS/Tests.css";
 import Question from "../Components/Question";
+
 
 const questions = [
     {
@@ -77,7 +78,6 @@ const questions = [
         type: "multiple-choice" as const
     }
 ];
-
   export default function BasicTestScreen() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [responses, setResponses] = useState<string[]>(new Array(questions.length).fill(''));
@@ -90,31 +90,43 @@ const questions = [
         setResponses(updatedResponses);
     };
 
+
+    function handleQuestionChange(isGoingForward: boolean) {
+        /**
+         * function passed to Question element to have the 'next' and 'previous' buttons handle going forward and back
+         * for the questions in the test
+         * @author Stephen Sayers
+         *
+         * @param isGoingForward: Returned from the buttons in the Question element. If it's true then the user wants
+         * to go to the next question, if it's false they want to go back to the last question
+         */
+
+        if (isGoingForward) {setCurrentQuestionIndex(currentQuestionIndex + 1);}
+        else {setCurrentQuestionIndex(currentQuestionIndex - 1);}
+    }
+
     const answeredCount = responses.filter(response => response !== '').length;
 
+    /*
     const handleSubmit = () => {
         console.log("Submitted responses: ", responses);
     };
+     */
 
     return (
-        <div className="test-body">
-            <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
-            <Question
-                questionText={questions[currentQuestionIndex].question}
-                choices={questions[currentQuestionIndex].answers}
-                onChoiceSelected={handleChoiceSelected}
-                selectedAnswer={responses[currentQuestionIndex]}
-                type="multiple-choice"
-            />
-            <div className="navigation-buttons">
-                {currentQuestionIndex > 0 && (
-                    <Button variant="secondary" onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}>Previous</Button>
-                )}
-                {currentQuestionIndex < questions.length - 1 ? (
-                    <Button variant="primary" onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}>Next</Button>
-                ) : (
-                    <Button variant="success" onClick={handleSubmit}>Submit</Button>
-                )}
+        <div>
+            <NavB/>
+            <div className="test-body">
+                <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
+                <Question
+                    questionText={questions[currentQuestionIndex].question}
+                    choices={questions[currentQuestionIndex].answers}
+                    onChoiceSelected={handleChoiceSelected}
+                    selectedAnswer={responses[currentQuestionIndex]}
+                    type="multiple-choice"
+                    onQuestionChange={handleQuestionChange}
+                    currentQuestionIndex={currentQuestionIndex}
+                />
             </div>
         </div>
     );

@@ -1,3 +1,6 @@
+import {Button} from "react-bootstrap";
+import React from "react";
+
 type QuestionProps = {
     questionText: string;
     choices?: string[];
@@ -6,7 +9,10 @@ type QuestionProps = {
     selectedAnswer?: string;
     type: 'multiple-choice' | 'open-ended';  // Make sure this is strict
     textResponse?: string;
+    onQuestionChange?: (isGoingForward: boolean) => void;
+    currentQuestionIndex: number;
 };
+
 
 const Question: React.FC<QuestionProps> = ({
     questionText,
@@ -15,7 +21,9 @@ const Question: React.FC<QuestionProps> = ({
     onTextChange,
     selectedAnswer,
     type,
-    textResponse
+    textResponse,
+    onQuestionChange,
+    currentQuestionIndex,
 }) => {
     return (
         <div className="question-container">
@@ -41,6 +49,10 @@ const Question: React.FC<QuestionProps> = ({
                     placeholder="Your answer here..."
                 />
             ) : null}
+            {currentQuestionIndex > 0 && (
+                <Button variant="secondary" onClick={() => onQuestionChange?.(false)}>Previous</Button>
+            )}
+            <Button variant="primary" onClick={() => onQuestionChange?.(true)}>Next</Button>
         </div>
     );
 };

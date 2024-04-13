@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { QuizProgressBar } from "../Components/progress";
-import { Button } from 'react-bootstrap';
 import "../CSS/Tests.css";
 import Question from "../Components/Question";
 
@@ -40,6 +39,7 @@ const openEndedQuestions = [
 export default function DetailedTestScreen() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [responses, setResponses] = useState<string[]>(new Array(openEndedQuestions.length).fill(''));
+    const answeredCount = responses.filter(response => response.trim() !== '').length;
 
     const handleTextChange = (text: string) => {
         const updatedResponses = responses.map((response, index) =>
@@ -48,16 +48,28 @@ export default function DetailedTestScreen() {
         setResponses(updatedResponses);
     };
 
-    const answeredCount = responses.filter(response => response.trim() !== '').length;
 
-    const navigateQuestions = (direction: number) => {
-        setCurrentQuestionIndex(currentQuestionIndex + direction);
-    };
+    function handleQuestionChange(isGoingForward: boolean) {
+        /**
+         * function passed to Question element to have the 'next' and 'previous' buttons handle going forward and back
+         * for the questions in the test
+         * @author Stephen Sayers
+         *
+         * @param isGoingForward: Returned from the buttons in the Question element. If it's true then the user wants
+         * to go to the next question, if it's false they want to go back to the last question
+         */
 
+        if (isGoingForward) {setCurrentQuestionIndex(currentQuestionIndex + 1);}
+        else {setCurrentQuestionIndex(currentQuestionIndex - 1);}
+    }
+
+    /*
     const handleSubmit = () => {
         console.log("Submitted responses: ", responses);
         // Submit logic here
     };
+
+     */
 
     return (
         <div className="test-body">
@@ -67,17 +79,9 @@ export default function DetailedTestScreen() {
                 onTextChange={handleTextChange}
                 type={openEndedQuestions[currentQuestionIndex].type}
                 textResponse={responses[currentQuestionIndex]}
+                onQuestionChange={handleQuestionChange}
+                currentQuestionIndex={currentQuestionIndex}
             />
-            <div className="navigation-buttons">
-                {currentQuestionIndex > 0 && (
-                    <Button onClick={() => navigateQuestions(-1)}>Previous</Button>
-                )}
-                {currentQuestionIndex < openEndedQuestions.length - 1 ? (
-                    <Button onClick={() => navigateQuestions(1)}>Next</Button>
-                ) : (
-                    <Button onClick={handleSubmit}>Submit</Button>
-                )}
-            </div>
         </div>
     );
 }

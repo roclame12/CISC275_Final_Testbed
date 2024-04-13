@@ -1,15 +1,19 @@
 .test-body {
     display: flex;
-    min-height: 100vh;
+    min-height: 95vh;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     background: #282C34FF;
     color: white;
 }
 
 .question-container {
-    min-height: 20vh;
+    min-height: 50vh;
+    min-width: 87vw;
+    padding: 10px;
+    border-radius: 10px;
+    background: #545459;
 }
 
 .choice-button.selected {
