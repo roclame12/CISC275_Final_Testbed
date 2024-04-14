@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { ProgressBar, Button } from 'react-bootstrap';
 import "../CSS/Progress.css";
 import '../CSS/Tests.css'
-import {Link} from "react-router-dom";
 
 export function QuizProgressBar({answeredCount, num_questions}: {
     answeredCount: number,
@@ -23,7 +22,9 @@ export function QuizProgressBar({answeredCount, num_questions}: {
 }
 
 
-export function FinishScreen(): JSX.Element {
+export function FinishScreen({setIndex}: {
+    setIndex: React.Dispatch<React.SetStateAction<number>>;
+}): JSX.Element {
     /**
      * When a test is finished this element takes the place of the question box to alert the user that they can go on to
      * the results of the test
@@ -45,7 +46,7 @@ export function FinishScreen(): JSX.Element {
                 <Button className="finish-button" onClick={() => navigate("/results")}>
                     Take me to the results
                 </Button>
-                <Button className="finish-button">
+                <Button className="finish-button" onClick={() => setIndex(0)}>
                     Let me review my answers
                 </Button>
             </div>

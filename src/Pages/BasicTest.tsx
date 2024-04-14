@@ -129,7 +129,7 @@ const questions = [
                         currentQuestionIndex={currentQuestionIndex}
                     />
                 ):(
-                    <FinishScreen/>
+                    <FinishScreen setIndex={setCurrentQuestionIndex}/>
                 ) }
             </div>
         </div>
