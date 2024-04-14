@@ -4,3 +4,17 @@
     border-radius: 10px;
     background: #545459;
 }
+
+.finish-text-body {
+    font-size: calc(10px + 2vmin);
+    max-width: 75vw;
+    text-align: left;
+    align-self: center;
+}
+
+.finish-button {
+    font-size: calc(10px + 2vmin);
+    margin-top: 7vh;
+    align-self: center;
+    min-width: 30vw;
+}

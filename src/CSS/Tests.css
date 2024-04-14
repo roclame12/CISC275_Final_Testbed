@@ -19,6 +19,7 @@
     justify-content: space-between;
     min-height: 50vh;
     min-width: 87vw;
+    max-width: 87vw;
     padding: 10px;
     border-radius: 10px;
     background: #545459;
@@ -52,7 +53,7 @@
 }
 
 .nav-button {
-    min-width: 30vw;
+    min-width: 25vw;
 }
 
 .choice-button.selected {
