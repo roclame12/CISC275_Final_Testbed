@@ -18,3 +18,9 @@
     align-self: center;
     min-width: 30vw;
 }
+
+.finish-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

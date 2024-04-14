@@ -53,6 +53,7 @@
 }
 
 .nav-button {
+    font-size: calc(10px + 2vmin);
     min-width: 25vw;
 }
 
