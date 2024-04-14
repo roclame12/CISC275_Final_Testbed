@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { QuizProgressBar } from "../Components/progress";
+import {FinishScreen, QuizProgressBar} from "../Components/progress";
 import { NavB } from "../Components/navBar";
 import "../CSS/Tests.css";
 import Question from "../Components/Question";
@@ -118,15 +118,19 @@ const questions = [
             <NavB/>
             <div className="test-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
-                <Question
-                    questionText={questions[currentQuestionIndex].question}
-                    choices={questions[currentQuestionIndex].answers}
-                    onChoiceSelected={handleChoiceSelected}
-                    selectedAnswer={responses[currentQuestionIndex]}
-                    type="multiple-choice"
-                    onQuestionChange={handleQuestionChange}
-                    currentQuestionIndex={currentQuestionIndex}
-                />
+                {currentQuestionIndex < questions.length ? (
+                    <Question
+                        questionText={questions[currentQuestionIndex].question}
+                        choices={questions[currentQuestionIndex].answers}
+                        onChoiceSelected={handleChoiceSelected}
+                        selectedAnswer={responses[currentQuestionIndex]}
+                        type="multiple-choice"
+                        onQuestionChange={handleQuestionChange}
+                        currentQuestionIndex={currentQuestionIndex}
+                    />
+                ):(
+                    <FinishScreen/>
+                ) }
             </div>
         </div>
     );

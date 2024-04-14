@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { QuizProgressBar } from "../Components/progress";
+import {FinishScreen, QuizProgressBar} from "../Components/progress";
 import { NavB } from "../Components/navBar";
 import "../CSS/Tests.css";
 import Question from "../Components/Question";
@@ -77,14 +77,18 @@ export default function DetailedTestScreen() {
             <NavB/>
             <div className="test-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={openEndedQuestions.length} />
-                <Question
-                    questionText={openEndedQuestions[currentQuestionIndex].question}
-                    onTextChange={handleTextChange}
-                    type={openEndedQuestions[currentQuestionIndex].type}
-                    textResponse={responses[currentQuestionIndex]}
-                    onQuestionChange={handleQuestionChange}
-                    currentQuestionIndex={currentQuestionIndex}
-                />
+                {currentQuestionIndex < openEndedQuestions.length ? (
+                    <Question
+                        questionText={openEndedQuestions[currentQuestionIndex].question}
+                        onTextChange={handleTextChange}
+                        type={openEndedQuestions[currentQuestionIndex].type}
+                        textResponse={responses[currentQuestionIndex]}
+                        onQuestionChange={handleQuestionChange}
+                        currentQuestionIndex={currentQuestionIndex}
+                    />
+                ):(
+                    <FinishScreen/>
+                )}
             </div>
         </>
     );
