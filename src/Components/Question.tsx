@@ -1,3 +1,6 @@
+import {Button} from "react-bootstrap";
+import React from "react";
+
 type QuestionProps = {
     questionText: string;
     choices?: string[];
@@ -6,7 +9,10 @@ type QuestionProps = {
     selectedAnswer?: string;
     type: 'multiple-choice' | 'open-ended';  // Make sure this is strict
     textResponse?: string;
+    onQuestionChange?: (isGoingForward: boolean) => void;
+    currentQuestionIndex: number;
 };
+
 
 const Question: React.FC<QuestionProps> = ({
     questionText,
@@ -15,11 +21,13 @@ const Question: React.FC<QuestionProps> = ({
     onTextChange,
     selectedAnswer,
     type,
-    textResponse
+    textResponse,
+    onQuestionChange,
+    currentQuestionIndex,
 }) => {
     return (
         <div className="question-container">
-            <p className="question-text">{questionText}</p>
+            <h3 className="question-text">{questionText}</h3>
             {type === 'multiple-choice' && choices && onChoiceSelected ? (
                 <div className="choices-container">
                     {choices.map((choice, index) => (
@@ -35,12 +43,18 @@ const Question: React.FC<QuestionProps> = ({
             ) : null}
             {type === 'open-ended' && onTextChange ? (
                 <textarea
-                    className="text-response"
+                    className="question-text-response"
                     value={textResponse || ''}
                     onChange={(e) => onTextChange(e.target.value)}
                     placeholder="Your answer here..."
                 />
             ) : null}
+            <div className='nav-buttons-container'>
+                {currentQuestionIndex > 0 && (
+                    <Button variant="secondary" className="nav-button" onClick={() => onQuestionChange?.(false)}>Previous</Button>
+                )}
+                <Button variant="primary" className="nav-button" onClick={() => onQuestionChange?.(true)}>Next</Button>
+            </div>
         </div>
     );
 };

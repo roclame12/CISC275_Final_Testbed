@@ -1,15 +1,60 @@
 .test-body {
     display: flex;
-    min-height: 100vh;
+    min-height: 95vh;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     background: #282C34FF;
     color: white;
 }
 
+.question-text {
+    margin-top: 1vh;
+}
+
 .question-container {
-    min-height: 20vh;
+    margin-top: -3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 50vh;
+    min-width: 87vw;
+    max-width: 87vw;
+    padding: 10px;
+    border-radius: 10px;
+    background: #545459;
+}
+
+.question-text-response {
+    min-height: 30vh;
+    min-width: 60vw;
+    font-size: calc(10px + 2vmin);
+    background: #333333;
+    color: white;
+}
+
+.nav-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.choices-container{
+    display: flex;
+    min-height: 30vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.choice-button{
+    font-size: calc(7px + 2vmin);
+    min-width: 25vw;
+}
+
+.nav-button {
+    font-size: calc(10px + 2vmin);
+    min-width: 25vw;
 }
 
 .choice-button.selected {
