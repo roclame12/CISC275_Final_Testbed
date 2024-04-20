@@ -13,7 +13,7 @@ export function NavB() {
   return (
     <Navbar bg="primary" variant="dark">
       <Container fluid className="p-0" style={containerStyle}>
-        <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Career Finder</Navbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/basic-test">Basic Test</Nav.Link>
           <Nav.Link as={Link} to="/detailed-test">Detailed Test</Nav.Link>
