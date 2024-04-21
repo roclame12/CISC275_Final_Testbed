@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {find_key} from "./Footer";
 import OpenAI from 'openai';
+import "../CSS/ReportScreen.css"
 
 let apiKey: string | undefined = find_key();
 
@@ -65,10 +66,10 @@ const ReportScreen: React.FC<{ responses: string[] }> = ({ responses }) => {
     }, []);
 
     return (
-        <div>
+        <div className={"placeholder-container"}>
             <h2>Test Completed!</h2>
             <h3>Recommended Majors:</h3>
-            <p>{report}</p>
+            <p className={"placeholder-text-box"}>{report}</p>
         </div>
     );
 };
