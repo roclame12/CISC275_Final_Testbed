@@ -13,7 +13,7 @@ export function find_key(): string|undefined {
     const prevKey = localStorage.getItem(saveKeyName); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
 
     if (prevKey !== null) {return JSON.parse(prevKey);}
-    else {return undefined;}
+    else {return "No key found";} // you need to have some string here or GPT's API throws errors
 }
 
 
