@@ -4,6 +4,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Pages/HomeScreen";
 import DetailedTestScreen from "./Pages/DetailedTest";
 import BasicTestScreen from "./Pages/BasicTest";
+import ResultPage from "./Pages/ResultPage";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/" element={<HomeScreen/>}/>
                     <Route path="/basic-test" element={<BasicTestScreen/>}/>
                     <Route path="/detailed-test" element={<DetailedTestScreen/>}/>
+                    <Route path="/results" element={<ResultPage/>}/>
                 </Routes>
             </Router>
         </div>
