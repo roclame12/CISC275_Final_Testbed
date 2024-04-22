@@ -33,27 +33,27 @@ export default function ResultPage():React.JSX.Element{
                     {"role": "system", "content": sys_role + test}, // GPT's role and the test results
                     {
                         "role": "assistant",
-                        "content": "What's the 10 best careers for the test taker? Please make the key for each career suggested \"job\""
+                        "content": "What's the 10 best careers for the test taker? Please make the JSON key for each career suggested \"job\""
                     },
                     {
                         "role": "user",
                         "content": "For each career suggested, could you explain what that job would entail? " +
-                            "Please make the key for each description \"description\""
+                            "Please make the JSON key for each description \"description\""
                     },
                     {
                         "role": "user",
                         "content": "For each career suggested, could you explain why the job is a good fit for " +
-                            "the test taker? Please make the key for each explanation \"justification\""
+                            "the test taker? Please make the JSON key for each explanation \"justification\""
                     },
                     {
                         "role": "user",
                         "content": "For each career suggested, what would be the training or education needed to get " +
-                            "the career? Please make the key for each explanation \"training\""
+                            "the career? Please make the JSON key for each explanation \"training\""
                     },
                     {
                         "role": "user",
                         "content": "For each career suggested, Could you list a couple of organizations that would hire " +
-                            "someone in that field? Please make the key for each explanation \"orgs\""
+                            "someone in that field? Please make the JSON key for each explanation \"orgs\""
                     }
                 ],
                 max_tokens: 3000, // was able to generate pretty good results in the playground with this length
