@@ -24,25 +24,31 @@ const test: string = "Q1 What do you enjoy doing in your free time?\nA1 Reading 
     "you thrive in?\nA7 A flexible and changing setting"
 
 
+// these two interfaces are needed to pass the JSON that GPT generates without getting errors
 interface rootJson extends Object {
-    careers: Array<JsonParam>
+    careers: Array<JsonParam> // see jsonParam for what this is
 }
 
 interface JsonParam extends Object{
-    job: string,
-    description: string,
-    justification: string,
-    training: string,
-    orgs: Array<string>
+    job: string, // the name of the job
+    description: string, // what you'd do in the job
+    justification: string, // why GPT picked this job for the user
+    training: string, // what degree, certification, ect you'd need for the job
+    orgs: Array<string> // what company, charity, government, ect. hires people in this job
 }
 
 
 function ResultAccordion({GPTReport}: {GPTReport: rootJson | undefined}): JSX.Element {
     /**
-     *
+     * Takes the JSON report given by the API request to OpenAPI and then formats it into a Bootstrap accordion
+     * @author: Stephen Sayers
      */
 
     function makeAccordionBody(json_object: JsonParam, i: number) {
+        /**
+         * makes the body of each accordion fold. Used as a callback function in the return of ResultAccordion function
+         * @author: Stephen Sayers
+         */
         return (
             <Accordion.Item eventKey={i.toString()}>
                 <Accordion.Header>{json_object.job}</Accordion.Header>
@@ -112,17 +118,16 @@ export default function ResultPage():React.JSX.Element {
                 max_tokens: 4000, // was able to generate pretty good results in the playground with this length
                 response_format: {type: "json_object"} // will probably be easier to handle than a string
             })
-            console.log("GPT finished due to: " + report.choices[0].finish_reason)
-            console.log("JSON provided: " + report.choices[0].message.content)
+            console.log("GPT finished due to: " + report.choices[0].finish_reason) // to see if GPT needs more tokens
             if (report.choices[0].message.content !== null) {setReport(JSON.parse(report.choices[0].message.content))}
-            else {await gen_report()}
+            else {await gen_report()} // the message is null, API call failed and needs to be done again
         }
         gen_report()
     }, []);
     const [report, setReport] = useState<rootJson>();
 
 
-    return (
+    return ( // We'll likely need a way to show that the API call is loading, rn it looks like the site doesn't work until the accordion shows up
         <div className={"placeholder-container"}>
             <h2>Test Completed!</h2>
             <ResultAccordion GPTReport={report}/>
