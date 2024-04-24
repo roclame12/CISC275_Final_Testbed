@@ -5,7 +5,6 @@ import "../Components/Footer";
 import Footer from "../Components/Footer";
 import BasicTest from "../Components/BasicTestCard";
 import DetailedTest from "../Components/DetailedTestCard";
-import Loading from "../Components/Loading";
 
 
 
