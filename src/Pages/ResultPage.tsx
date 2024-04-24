@@ -3,7 +3,6 @@ import { find_key } from "../Components/Footer";
 import OpenAI from "openai";
 import "../CSS/ReportScreen.css";
 import { Accordion } from "react-bootstrap";
-import Loading from "../Components/Loading";
 import LoadingPage from "./LoadingPage";
 
 let apiKey: string | undefined = find_key();
