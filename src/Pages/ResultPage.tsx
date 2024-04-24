@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import "../CSS/ReportScreen.css";
 import { Accordion } from "react-bootstrap";
 import Loading from "../Components/Loading";
+import LoadingPage from "./LoadingPage";
 
 let apiKey: string | undefined = find_key();
 
@@ -154,7 +155,7 @@ export default function ResultPage(): React.JSX.Element {
     // We'll likely need a way to show that the API call is loading, rn it looks like the site doesn't work until the accordion shows up
     <div className={"placeholder-container"}>
       <h2>Test Completed!</h2>
-      {isLoading ? <Loading /> : <ResultAccordion GPTReport={report} />}
+      {isLoading ? <LoadingPage /> : <ResultAccordion GPTReport={report} />}
     </div>
   );
 }
