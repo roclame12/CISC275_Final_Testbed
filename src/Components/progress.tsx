@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { ProgressBar, Button } from 'react-bootstrap';
+import { questionJsonProps } from "./Question";
 import "../CSS/Progress.css";
 import '../CSS/Tests.css'
 
@@ -10,7 +11,6 @@ export function QuizProgressBar({answeredCount, num_questions}: {
     num_questions: number
 }): JSX.Element {
     const progressPercent = Math.floor((answeredCount / num_questions) * 100);
-
     return (
         <div className="progress-bar-container">
             <h3>Quiz Progress</h3>
@@ -23,8 +23,29 @@ export function QuizProgressBar({answeredCount, num_questions}: {
 }
 
 
-export function FinishScreen({setIndex}: {
-    setIndex: React.Dispatch<React.SetStateAction<number>>;
+function exportResults(questions: Array<questionJsonProps>, responses: Array<string>): string {
+    /**
+     * takes the questions and responses and combines the text of the question with its response, used in <FinishScreen>
+     * to pass on the results of the test to the OpenAI API
+     *@author Stephen
+     *
+     * @param questions the array of the questions that were asked to the user
+     * @param responses the users responses, its expected that the responses are the same length as questions
+     */
+    let results: string = ""
+    for (let i = 0; i < questions.length; i++) { // I don't even know how you could use the string methods for this
+        results.concat("Q" + i.toString() + ": " + questions[i].questionText + "\n");
+        results.concat("A" + i.toString() + ": " + responses[i] + "\n\n");
+    }
+
+    return results;
+}
+
+
+export function FinishScreen({setIndex, questions, responses}: {
+    setIndex: React.Dispatch<React.SetStateAction<number>>,
+    questions: Array<questionJsonProps>,
+    responses: Array<string>;
 }): JSX.Element {
     /**
      * When a test is finished this element takes the place of the question box to alert the user that they can go on to
@@ -44,7 +65,7 @@ export function FinishScreen({setIndex}: {
                 ready, click below to uncover the personalized results that await you.
             </p>
             <div className="finish-button-container">
-                <Button className="finish-button" onClick={() => navigate("/results")}>
+                <Button className="finish-button" onClick={() => navigate("/results", {state: exportResults(questions, responses)})}>
                     Take me to the results
                 </Button>
                 <Button className="finish-button" onClick={() => setIndex(0)}>

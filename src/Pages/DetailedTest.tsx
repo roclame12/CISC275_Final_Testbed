@@ -86,7 +86,11 @@ export default function DetailedTestScreen() {
                         currentQuestionIndex={currentQuestionIndex}
                     />
                 ):(
-                    <FinishScreen setIndex={setCurrentQuestionIndex}/>
+                    <FinishScreen
+                        setIndex={setCurrentQuestionIndex}
+                        questions={openEndedQuestions}
+                        responses={responses}
+                    />
                 )}
             </div>
         </>

@@ -127,7 +127,11 @@ const questions: Array<questionJsonProps> = [
                         currentQuestionIndex={currentQuestionIndex}
                     />
                 ):(
-                    <FinishScreen setIndex={setCurrentQuestionIndex}/>
+                    <FinishScreen
+                        setIndex={setCurrentQuestionIndex}
+                        questions={questions}
+                        responses={responses}
+                    />
                 ) }
             </div>
         </div>
