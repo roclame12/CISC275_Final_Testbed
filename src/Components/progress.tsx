@@ -34,9 +34,11 @@ function exportResults(questions: Array<questionJsonProps>, responses: Array<str
      */
     let results: string = ""
     for (let i = 0; i < questions.length; i++) { // I don't even know how you could use the string methods for this
-        results.concat("Q" + i.toString() + ": " + questions[i].questionText + "\n");
-        results.concat("A" + i.toString() + ": " + responses[i] + "\n\n");
+        results += ("Q" + (i + 1).toString() + ": " + questions[i].questionText + "\n");
+        results += ("A" + (i + 1).toString() + ": " + responses[i] + "\n\n");
     }
+
+    console.log(results);
 
     return results;
 }

@@ -4,26 +4,12 @@ import OpenAI from "openai";
 import "../CSS/ReportScreen.css";
 import { Accordion } from "react-bootstrap";
 import LoadingPage from "./LoadingPage";
+import {useLocation} from "react-router-dom";
 
 let apiKey: string | undefined = find_key();
 
 // Initialize OpenAI API
 const openai = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
-
-const sys_role: string =
-  "You're the reviewer of the results of a career test. You'll provide people the best possible suggestions for " +
-  "the career someone should take based off of the results of the test. Responses should be in JSON format where " +
-  "each career suggested should be its own JSON object, the root key for the JSON should be titled \"careers\"." +
-  "\n\nThe results of the test is the following:\n\n"; // questions and answers go here
-
-// placeholder string that will be replaced by a function to format the questions and answers of the test into GPT's role
-const test: string =
-  "Q1 What do you enjoy doing in your free time?\nA1 Reading and researching\n\nQ2 How " +
-  "do you prefer to work?\nA2 Alone, focusing deeply on tasks\n\nQ3 What best describes your decision-making " +
-  "process?\nA3 Practical and based on what works best\n\nQ4 Which of these tasks would you enjoy the " +
-  "most?\nA4 Solving a complex mathematical problem\n\nQ5 How do you handle stress?\nA5 By planning and " +
-  "organizing\n\nQ6 What motivates you to work?\nA6 Personal growth and learning\n\nQ7 Which environment do " +
-  "you thrive in?\nA7 A flexible and changing setting";
 
 // these two interfaces are needed to pass the JSON that GPT generates without getting errors
 interface rootJson extends Object {
@@ -92,6 +78,7 @@ function ResultAccordion({
 export default function ResultPage(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [report, setReport] = useState<rootJson>();
+  const location = useLocation()
 
   useEffect(() => {
     async function gen_report() {
@@ -100,45 +87,52 @@ export default function ResultPage(): React.JSX.Element {
        * in the useEffect hook
        * @author Stephen Sayers
        */
+      const sys_role: string =
+          "You're the reviewer of the results of a career test. You'll provide people the best possible suggestions for " +
+          "the career someone should take based off of the results of the test. Responses should be in JSON format where " +
+          "each career suggested should be its own JSON object, the root key for the JSON should be titled \"careers\"." +
+          "\n\nThe results of the test are the following:\n\n";
+      const results: string = location.state;
+
       const report = await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
-          { role: "system", content: sys_role + test }, // GPT's role and the test results
+          { role: "system", content: sys_role + results }, // GPT's role and the test results
           {
             role: "assistant",
             content:
-              'What\'s the 10 best careers for the test taker? Please make the JSON key for each career suggested "job"',
+              'What\'s the 10 best careers for the test taker? Make the JSON key for each career "job"',
           },
           {
             role: "user",
             content:
-              "For each career suggested, could you write a short paragraph explaining what that job would entail? " +
-              'Please make the JSON key for each description "description"',
+              "For each career, write a 3 sentence paragraph explaining what that job entails. Make the JSON key for " +
+               "each description \"description\"",
           },
           {
             role: "user",
             content:
-              "For each career suggested, could you explain why the job is a good fit for " +
-              "the test taker? Respond as if you were speaking to the test taker and, " +
-              'please make the JSON key for each explanation "justification"',
+              "For each career, Explain why the job is a good fit for the test taker. Respond as if you " +
+              "were speaking to the test taker and, Make the JSON key for each explanation \"justification\"",
           },
           {
             role: "user",
             content:
-              "For each career suggested, what would be the training or education needed to get " +
-              'the career? Please make the JSON key for each explanation "training"',
+              "For each career, what training or education is needed? Please make the JSON key for each " +
+              "explanation \"training\""
           },
           {
             role: "user",
             content:
-              "For each career suggested, Could you list a couple of organizations that would hire " +
-              'someone in that field? Please make the JSON key for each explanation "orgs"',
+              "For each career, list a couple of organizations that would hire in that field? Make the " +
+              "JSON key for each explanation \"orgs\"",
           },
         ],
-        max_tokens: 4000, // was able to generate pretty good results in the playground with this length
+        max_tokens: 4096, // was able to generate pretty good results in the playground with this length
         response_format: { type: "json_object" }, // will probably be easier to handle than a string
       });
       console.log("GPT finished due to: " + report.choices[0].finish_reason); // to see if GPT needs more tokens
+      console.log("JSON generated:" + report.choices[0].message.content);
       if (report.choices[0].message.content !== null) {
         setReport(JSON.parse(report.choices[0].message.content));
         setIsLoading(false);

@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { NavB } from "./Components/navBar";
 import { FinishScreen } from "./Components/progress";
 import "./Pages/HomeScreen";
+import { questionJsonProps } from "./Components/Question";
 import HomeScreen from "./Pages/HomeScreen";
 
 // Tests for NavB component
@@ -37,11 +38,18 @@ describe("NavB component", () => {
 
 // Tests for FinishScreen component
 describe("FinishScreen component", () => {
+  const questions: Array<questionJsonProps> = [ // a fake question list to pass to the tests
+    {
+      questionText: "placeholder",
+      type: "open-ended"
+    }
+  ]
+
   // Test to check if congratulations message renders
   test("renders congratulations message", () => {
     const { getByText } = render(
       <Router>
-        <FinishScreen setIndex={() => {}} />
+        <FinishScreen setIndex={() => {}} questions={questions} responses={[""]}/>
       </Router>
     );
     const congratulationsMessage = getByText(
@@ -54,7 +62,7 @@ describe("FinishScreen component", () => {
   test('renders "Take me to the results" button', () => {
     const { getByText } = render(
       <Router>
-        <FinishScreen setIndex={() => {}} />
+        <FinishScreen setIndex={() => {}} questions={questions} responses={[""]}/>
       </Router>
     );
     const resultsButton = getByText(/Take me to the results/i); // Check if "Take me to the results" button is rendered
@@ -65,7 +73,7 @@ describe("FinishScreen component", () => {
   test('renders "Let me review my answers" button', () => {
     const { getByText } = render(
       <Router>
-        <FinishScreen setIndex={() => {}} />
+        <FinishScreen setIndex={() => {}} questions={questions} responses={[""]}/>
       </Router>
     );
     const reviewButton = getByText(/Let me review my answers/i); // Check if "Let me review my answers" button is rendered

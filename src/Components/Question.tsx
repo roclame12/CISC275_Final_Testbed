@@ -47,6 +47,7 @@ export const Question: React.FC<QuestionProps> = ({
             {questionJson.type === 'open-ended' && onTextChange ? (
                 <textarea
                     className="question-text-response"
+                    maxLength={280} // good to limit the length of a response to reduce API load times and token use
                     value={textResponse || ''}
                     onChange={(e) => onTextChange(e.target.value)}
                     placeholder="Your answer here..."
