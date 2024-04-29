@@ -11,10 +11,10 @@ let apiKey: string | undefined = find_key();
 const openai = new OpenAI({ apiKey: apiKey, dangerouslyAllowBrowser: true });
 
 const sys_role: string =
-  "You are a reviewer of the results of a career test. You are meant to provide people the " +
-  "best possible suggestions of what career someone should take based off of the results of the test. All " +
-  "responses should be in JSON format where each career suggested should be its own JSON object, the root key for the JSON" +
-  'should be titled "careers".\n\nThe results of the test the site user took is the following:\n\n'; // questions and answers go here
+  "You're the reviewer of the results of a career test. You'll provide people the best possible suggestions for " +
+  "the career someone should take based off of the results of the test. Responses should be in JSON format where " +
+  "each career suggested should be its own JSON object, the root key for the JSON should be titled \"careers\"." +
+  "\n\nThe results of the test is the following:\n\n"; // questions and answers go here
 
 // placeholder string that will be replaced by a function to format the questions and answers of the test into GPT's role
 const test: string =
@@ -151,7 +151,6 @@ export default function ResultPage(): React.JSX.Element {
   }, []);
 
   return (
-    // We'll likely need a way to show that the API call is loading, rn it looks like the site doesn't work until the accordion shows up
     <div className={"placeholder-container"}>
       <h2>Test Completed!</h2>
       {isLoading ? <LoadingPage /> : <ResultAccordion GPTReport={report} />}

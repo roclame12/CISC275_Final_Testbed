@@ -4,6 +4,7 @@ import { ProgressBar, Button } from 'react-bootstrap';
 import "../CSS/Progress.css";
 import '../CSS/Tests.css'
 
+
 export function QuizProgressBar({answeredCount, num_questions}: {
     answeredCount: number,
     num_questions: number

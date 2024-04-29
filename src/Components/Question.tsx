@@ -14,7 +14,14 @@ type QuestionProps = {
 };
 
 
-const Question: React.FC<QuestionProps> = ({
+export interface questionJsonProps{ // gives the question JSONs in BasicTest and DetailedTest a consistent interface
+    questionText: string,
+    choices?: Array<string>
+    type: 'multiple-choice' | 'open-ended'
+}
+
+
+export const Question: React.FC<QuestionProps> = ({
     questionText,
     choices,
     onChoiceSelected,
@@ -58,5 +65,3 @@ const Question: React.FC<QuestionProps> = ({
         </div>
     );
 };
-
-export default Question;
