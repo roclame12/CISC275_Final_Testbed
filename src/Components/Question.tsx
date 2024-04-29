@@ -2,12 +2,10 @@ import {Button} from "react-bootstrap";
 import React from "react";
 
 type QuestionProps = {
-    questionText: string;
-    choices?: string[];
+    questionJson: questionJsonProps;
     onChoiceSelected?: (choice: string) => void;
     onTextChange?: (text: string) => void;
     selectedAnswer?: string;
-    type: 'multiple-choice' | 'open-ended';  // Make sure this is strict
     textResponse?: string;
     onQuestionChange?: (isGoingForward: boolean) => void;
     currentQuestionIndex: number;
@@ -17,27 +15,25 @@ type QuestionProps = {
 export interface questionJsonProps{ // gives the question JSONs in BasicTest and DetailedTest a consistent interface
     questionText: string,
     choices?: Array<string>
-    type: 'multiple-choice' | 'open-ended'
+    type: 'multiple-choice' | 'open-ended'  // Make sure this is strict
 }
 
 
 export const Question: React.FC<QuestionProps> = ({
-    questionText,
-    choices,
+    questionJson,
     onChoiceSelected,
     onTextChange,
     selectedAnswer,
-    type,
     textResponse,
     onQuestionChange,
     currentQuestionIndex,
 }) => {
     return (
         <div className="question-container">
-            <h3 className="question-text">{questionText}</h3>
-            {type === 'multiple-choice' && choices && onChoiceSelected ? (
+            <h3 className="question-text">{questionJson.questionText}</h3>
+            {questionJson.type === 'multiple-choice' && questionJson.choices && onChoiceSelected ? (
                 <div className="choices-container">
-                    {choices.map((choice, index) => (
+                    {questionJson.choices.map((choice, index) => (
                         <button
                             key={index}
                             className={`choice-button ${selectedAnswer === choice ? 'selected' : ''}`}
@@ -48,7 +44,7 @@ export const Question: React.FC<QuestionProps> = ({
                     ))}
                 </div>
             ) : null}
-            {type === 'open-ended' && onTextChange ? (
+            {questionJson.type === 'open-ended' && onTextChange ? (
                 <textarea
                     className="question-text-response"
                     value={textResponse || ''}

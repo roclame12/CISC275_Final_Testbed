@@ -120,11 +120,9 @@ const questions: Array<questionJsonProps> = [
                 <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
                 {currentQuestionIndex < questions.length ? (
                     <Question
-                        questionText={questions[currentQuestionIndex].questionText}
-                        choices={questions[currentQuestionIndex].choices}
+                        questionJson={questions[currentQuestionIndex]}
                         onChoiceSelected={handleChoiceSelected}
                         selectedAnswer={responses[currentQuestionIndex]}
-                        type="multiple-choice"
                         onQuestionChange={handleQuestionChange}
                         currentQuestionIndex={currentQuestionIndex}
                     />

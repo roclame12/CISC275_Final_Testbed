@@ -79,9 +79,8 @@ export default function DetailedTestScreen() {
                 <QuizProgressBar answeredCount={answeredCount} num_questions={openEndedQuestions.length} />
                 {currentQuestionIndex < openEndedQuestions.length ? (
                     <Question
-                        questionText={openEndedQuestions[currentQuestionIndex].questionText}
+                        questionJson={openEndedQuestions[currentQuestionIndex]}
                         onTextChange={handleTextChange}
-                        type={openEndedQuestions[currentQuestionIndex].type}
                         textResponse={responses[currentQuestionIndex]}
                         onQuestionChange={handleQuestionChange}
                         currentQuestionIndex={currentQuestionIndex}
