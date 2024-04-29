@@ -142,7 +142,7 @@ export default function ResultPage(): React.JSX.Element {
       
     }
     gen_report();
-  }, []);
+  }, [location.state]);
 
   return (
     <div className={"placeholder-container"}>
