@@ -116,7 +116,7 @@ const questions = [
     return (
         <div>
             <NavB/>
-            <div className="test-body">
+            <div className="b-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
                 {currentQuestionIndex < questions.length ? (
                     <Question
