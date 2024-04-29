@@ -7,5 +7,9 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: gray;
+   background-image: url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3ByZ2dsaGw4NGpjbnJudzYxdWhsdjdmZXpjejU3N2hseTN5b2xoYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o72F8t9TDi2xVnxOE/giphy.gif);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   color: black;
 }

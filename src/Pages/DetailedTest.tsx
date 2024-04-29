@@ -75,7 +75,7 @@ export default function DetailedTestScreen() {
     return (
         <>
             <NavB/>
-            <div className="test-body">
+            <div className="d-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={openEndedQuestions.length} />
                 {currentQuestionIndex < openEndedQuestions.length ? (
                     <Question
