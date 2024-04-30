@@ -1,0 +1,9 @@
+#nav-root {
+    height: 7vh;
+    font-size: calc(5px + 2vh);
+}
+
+#nav-brand {
+    font-size: calc(9px + 2vh);
+    font-weight: bold;
+}
