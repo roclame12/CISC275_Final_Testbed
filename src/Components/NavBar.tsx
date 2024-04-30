@@ -7,7 +7,7 @@ import "../CSS/NavBar.css"
 
 export function NavB() {
   return (
-    <Navbar bg="primary" variant="dark" id="nav-root">
+    <Navbar bg="nav-root" variant="dark" className="nav-root">
       <Container fluid className="p-0">
         <Navbar.Brand as={Link} to="/" id="nav-brand">Career Finder</Navbar.Brand>
         <Nav className="ms-auto">

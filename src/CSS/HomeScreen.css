@@ -6,26 +6,35 @@
 
 .Home-body {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 93vh; /* height gotten by subtracting 100 by the height of the NavB */
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: stretch;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.test-container {
+.home-card-bg{
+  width: 49.9vw;
+}
+
+.home-card-contents{
+  height: 100%;
+  width: 100%;
   display: flex;
-  justify-content: space-between; /* Adjust spacing between the test components */
-  margin: 20px 0; /* Add margin for spacing between the test components and footer */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(12px) brightness(.5);
 }
 
-.test {
-  flex: 1; /* Ensure equal width for both test components */
-  margin-bottom: 20px; /* Adjust spacing between test components */
+.home-card-body {
+  width: 40vw;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
 }
 
-
-.home-card {
-  background: url("../Image/BasicImage.jpg");
+.home-card-button{
+  font-size: calc(7px + 2vmin);
 }

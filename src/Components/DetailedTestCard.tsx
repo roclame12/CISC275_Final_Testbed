@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import Image from '../Image/Image.jpg'; // Importing the image for the card
+import Image from '../Image/DetailedImage.jpg'; // Importing the image for the card
 
 function DetailedTest() {
   return (
