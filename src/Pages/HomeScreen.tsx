@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "../CSS/HomeScreen.css";
 import { NavB } from "../Components/NavBar";
 import "../Components/Footer";
@@ -9,15 +9,53 @@ import { useNavigate } from "react-router-dom";
 import {Button} from "react-bootstrap";
 
 
-function HomeScreenCard({img, header, body, button_text, link}:{
+interface windowSize {
+    width: number;
+    height: number;
+}
+
+
+function useScreenSize(): windowSize {
+    /**
+     * Custom hook that detects whenever a change in screen size occurs
+     * @author Stephen
+     */
+    const [screenSize, setScreenSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    useEffect(() => {
+        function handleResize(){
+            setScreenSize({width: window.innerWidth, height: window.innerHeight,});
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {window.removeEventListener('resize', handleResize);};
+    }, []);
+
+    return screenSize;
+}
+
+
+function HomeScreenCard({img, header, body, buttonText, link}:{
     img: string,
     header: string,
     body: string,
-    button_text: string,
+    buttonText: string,
     link: "/basic-test" | "/detailed-test"
 }): JSX.Element {
     /**
      * Element that displays a title, text body, and a button that links to a test
+     *@author Stephen
+     *
+     * @param img - The background image
+     * @param header - The header of the card
+     * @param body - The main text of the card
+     * @param buttonText - the label of the button
+     * @param link - where the button takes the user
      */
 
     const navigate = useNavigate();
@@ -27,7 +65,7 @@ function HomeScreenCard({img, header, body, button_text, link}:{
             <div className="home-card-contents">
                 <h1>{header}</h1>
                 <p className="home-card-body">{body}</p>
-                <Button className="home-card-button" onClick={() => navigate(link)}>{button_text}</Button>
+                <Button className="home-card-button" onClick={() => navigate(link)}>{buttonText}</Button>
             </div>
         </div>
     )
@@ -48,7 +86,7 @@ export default function HomeScreen() {
                   "gain a better understanding of your future in the workforce. Our basic career exam is your first " +
                   "step to success and is ideal for anyone looking to explore new prospects or needs a little " +
                   "prodding in the right direction."}
-              button_text={"Take the Basic Test"}
+              buttonText={"Take the Basic Test"}
               link={"/basic-test"}
           />
           <HomeScreenCard
@@ -60,7 +98,7 @@ export default function HomeScreen() {
                   "considered and gain valuable clarity on your professional journey. Whether you're exploring new " +
                   "opportunities or seeking guidance on your current path, our detailed career test is your roadmap to " +
                   "success."}
-              button_text={"Take the Detailed Test"}
+              buttonText={"Take the Detailed Test"}
               link={"/detailed-test"}
           />
       </div>
