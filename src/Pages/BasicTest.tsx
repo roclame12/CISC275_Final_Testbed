@@ -3,13 +3,13 @@ import { useState } from 'react';
 import {FinishScreen, QuizProgressBar} from "../Components/progress";
 import { NavB } from "../Components/navBar";
 import "../CSS/Tests.css";
-import Question from "../Components/Question";
+import { Question, questionJsonProps } from "../Components/Question";
 
 
-const questions = [
+const questions: Array<questionJsonProps> = [
     {
-        question: "What do you enjoy doing in your free time?",
-        answers: [
+        questionText: "What do you enjoy doing in your free time?",
+        choices: [
             "Reading and researching",
             "Building or creating things",
             "Organizing events or activities",
@@ -18,8 +18,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "How do you prefer to work?",
-        answers: [
+        questionText: "How do you prefer to work?",
+        choices: [
             "Alone, focusing deeply on tasks",
             "In a team, collaborating closely with others",
             "In a dynamic environment with lots of changes",
@@ -28,8 +28,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "What best describes your decision-making process?",
-        answers: [
+        questionText: "What best describes your decision-making process?",
+        choices: [
             "Analytical and data-driven",
             "Intuitive and based on personal values",
             "Practical and based on what works best",
@@ -38,8 +38,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "Which of these tasks would you enjoy the most?",
-        answers: [
+        questionText: "Which of these tasks would you enjoy the most?",
+        choices: [
             "Solving a complex mathematical problem",
             "Designing a marketing campaign for a new product",
             "Leading a team to achieve a project goal",
@@ -48,8 +48,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "How do you handle stress?",
-        answers: [
+        questionText: "How do you handle stress?",
+        choices: [
             "By planning and organizing",
             "Through creative expression",
             "By talking to others and seeking support",
@@ -58,8 +58,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "What motivates you to work?",
-        answers: [
+        questionText: "What motivates you to work?",
+        choices: [
             "Achieving high-quality results",
             "Making a positive impact on others",
             "Personal growth and learning",
@@ -68,8 +68,8 @@ const questions = [
         type: "multiple-choice" as const
     },
     {
-        question: "Which environment do you thrive in?",
-        answers: [
+        questionText: "Which environment do you thrive in?",
+        choices: [
             "A quiet, solitary workspace",
             "A bustling, energetic office",
             "A flexible and changing setting",
@@ -116,20 +116,22 @@ const questions = [
     return (
         <div>
             <NavB/>
-            <div className="test-body">
+            <div className="b-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={questions.length} />
                 {currentQuestionIndex < questions.length ? (
                     <Question
-                        questionText={questions[currentQuestionIndex].question}
-                        choices={questions[currentQuestionIndex].answers}
+                        questionJson={questions[currentQuestionIndex]}
                         onChoiceSelected={handleChoiceSelected}
                         selectedAnswer={responses[currentQuestionIndex]}
-                        type="multiple-choice"
                         onQuestionChange={handleQuestionChange}
                         currentQuestionIndex={currentQuestionIndex}
                     />
                 ):(
-                    <FinishScreen setIndex={setCurrentQuestionIndex}/>
+                    <FinishScreen
+                        setIndex={setCurrentQuestionIndex}
+                        questions={questions}
+                        responses={responses}
+                    />
                 ) }
             </div>
         </div>

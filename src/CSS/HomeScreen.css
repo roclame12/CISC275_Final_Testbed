@@ -13,3 +13,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.test-container {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing between the test components */
+  margin: 20px 0; /* Add margin for spacing between the test components and footer */
+}
+
+.test {
+  flex: 1; /* Ensure equal width for both test components */
+  margin-bottom: 20px; /* Adjust spacing between test components */
+}

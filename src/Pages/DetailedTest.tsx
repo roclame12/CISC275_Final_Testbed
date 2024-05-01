@@ -3,35 +3,35 @@ import { useState } from 'react';
 import {FinishScreen, QuizProgressBar} from "../Components/progress";
 import { NavB } from "../Components/navBar";
 import "../CSS/Tests.css";
-import Question from "../Components/Question";
+import { Question, questionJsonProps } from "../Components/Question";
 
-const openEndedQuestions = [
+const openEndedQuestions: Array<questionJsonProps> = [
     {
-        question: "Describe a complex problem you've faced in the past. How did you approach solving it?",
+        questionText: "Describe a complex problem you've faced in the past. How did you approach solving it?",
         type: "open-ended" as const
     },
     {
-        question: "How do you interact in a team setting? Give examples of your role in different group dynamics.",
+        questionText: "How do you interact in a team setting? Give examples of your role in different group dynamics.",
         type: "open-ended" as const
     },
     {
-        question: "What method do you use to prioritize your tasks at work or in daily life? Please explain why you chose this method.",
+        questionText: "What method do you use to prioritize your tasks at work or in daily life? Please explain why you chose this method.",
         type: "open-ended" as const
     },
     {
-        question: "Can you describe a learning experience that significantly impacted your personal or professional development?",
+        questionText: "Can you describe a learning experience that significantly impacted your personal or professional development?",
         type: "open-ended" as const
     },
     {
-        question: "What project have you been involved with that you found particularly exciting or fulfilling? Describe what made it so.",
+        questionText: "What project have you been involved with that you found particularly exciting or fulfilling? Describe what made it so.",
         type: "open-ended" as const
     },
     {
-        question: "Tell us about a challenge you faced at work or in life. How did you manage and what was the outcome?",
+        questionText: "Tell us about a challenge you faced at work or in life. How did you manage and what was the outcome?",
         type: "open-ended" as const
     },
     {
-        question: "What aspects of a work culture are most important to you and why?",
+        questionText: "What aspects of a work culture are most important to you and why?",
         type: "open-ended" as const
     }
 ];
@@ -75,19 +75,22 @@ export default function DetailedTestScreen() {
     return (
         <>
             <NavB/>
-            <div className="test-body">
+            <div className="d-body">
                 <QuizProgressBar answeredCount={answeredCount} num_questions={openEndedQuestions.length} />
                 {currentQuestionIndex < openEndedQuestions.length ? (
                     <Question
-                        questionText={openEndedQuestions[currentQuestionIndex].question}
+                        questionJson={openEndedQuestions[currentQuestionIndex]}
                         onTextChange={handleTextChange}
-                        type={openEndedQuestions[currentQuestionIndex].type}
                         textResponse={responses[currentQuestionIndex]}
                         onQuestionChange={handleQuestionChange}
                         currentQuestionIndex={currentQuestionIndex}
                     />
                 ):(
-                    <FinishScreen setIndex={setCurrentQuestionIndex}/>
+                    <FinishScreen
+                        setIndex={setCurrentQuestionIndex}
+                        questions={openEndedQuestions}
+                        responses={responses}
+                    />
                 )}
             </div>
         </>
