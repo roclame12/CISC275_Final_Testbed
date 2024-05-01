@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import "../CSS/HomeScreen.css";
 import { NavB } from "../Components/NavBar";
 import "../Components/Footer";
@@ -7,37 +7,6 @@ import BasicImage from "../Image/BasicImage.jpg"
 import DetailedImage from "../Image/DetailedImage.jpg"
 import { useNavigate } from "react-router-dom";
 import {Button} from "react-bootstrap";
-
-
-interface windowSize {
-    width: number;
-    height: number;
-}
-
-
-function useScreenSize(): windowSize {
-    /**
-     * Custom hook that detects whenever a change in screen size occurs
-     * @author Stephen
-     */
-    const [screenSize, setScreenSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        function handleResize(){
-            setScreenSize({width: window.innerWidth, height: window.innerHeight,});
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component unmounts
-        return () => {window.removeEventListener('resize', handleResize);};
-    }, []);
-
-    return screenSize;
-}
 
 
 function HomeScreenCard({img, header, body, buttonText, link}:{
@@ -73,7 +42,7 @@ function HomeScreenCard({img, header, body, buttonText, link}:{
 
 
 export default function HomeScreen() {
-  return (
+    return (
     <div>
       <NavB/>
       <div className="Home-body">

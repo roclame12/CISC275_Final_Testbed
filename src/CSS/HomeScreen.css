@@ -1,22 +1,49 @@
-.Text-blurb {
-  padding-top: 6vh;
-  max-width: 75vw;
-  text-align: start
+@media (orientation: landscape) {
+  .Home-body {
+    background-color: #282c34;
+    height: 93vh; /* height gotten by subtracting 100 by the height of the NavB */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    font-size: calc(5px + 2vmin);
+    color: white;
+  }
+
+  .home-card-bg {
+    width: 49.9vw;
+  }
+
+  .home-card-body {
+    width: 40vw;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+  }
 }
 
-.Home-body {
-  background-color: #282c34;
-  height: 93vh; /* height gotten by subtracting 100 by the height of the NavB */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@media (orientation: portrait) {/* 1100px was chosen due to that being the point where components started to look bad */
+  .Home-body {
+    background-color: #282c34;
+    height: 93vh; /* height gotten by subtracting 100 by the height of the NavB */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    font-size: calc(5px + 2vmin);
+    color: white;
+  }
+
+  .home-card-bg {
+    height: 49.9vh;
+  }
+
+  .home-card-body {
+    max-width: 49vh;
+  }
 }
 
-.home-card-bg{
-  width: 49.9vw;
+.home-card-button {
+  font-size: calc(6px + 2vmin);
 }
 
 .home-card-contents{
@@ -27,14 +54,4 @@
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(12px) brightness(.5);
-}
-
-.home-card-body {
-  width: 40vw;
-  margin-top: 3vh;
-  margin-bottom: 5vh;
-}
-
-.home-card-button{
-  font-size: calc(7px + 2vmin);
 }
